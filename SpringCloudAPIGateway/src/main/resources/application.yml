@@ -1,0 +1,49 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # we were able to successfully send a request to MICRO service via an API gateway,
+            # just enabled the discovery locator feature and our Spring Cloud API Gateway used the service name that we have specified in the request.
+          # eg: http://10.14.60.178:8082/PHOTOAPP-ACCOUNT-MANAGEMENT/actuator/health {apigatewayip:port}/{client-service-name}/{url}
+          lower-case-service-id: true # http://10.14.60.178:8082/photoapp-account-management/actuator/health {to use service name in lower character}
+      routes[0]:
+        id: photoapp-api-account-management
+        uri: lb://photoapp-account-management # for using service name combination
+       #uri: http://localhost:56803 # for using {ip:port} combination
+        predicates[0]: Path=/pacm/account/status/check
+        predicates[1]: Method=GET,POST
+        #predicates[2]: Header=Authorization, Bearer (.*)
+        filters[0]: RemoveRequestHeader=Cookie
+        #filters[1]: RewritePath=/users-ws/(?<segment>.*), /${segment}
+        #filters[2]: AuthorizationHeaderFilter
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+
+# ACTUATOR PROPERTIES
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+    build:
+      enabled: true
+    java:
+      enabled: true
+
+token:
+  secret: hfgry463hf746hf573ydh475fhy5739

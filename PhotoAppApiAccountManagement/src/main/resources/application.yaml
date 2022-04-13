@@ -1,9 +1,10 @@
-spring:
-  application:
-    name: PhotoApp account management
-
 server:
   port: '0'
+  servlet:
+    context-path: /pacm
+spring:
+  application:
+    name: photoapp-account-management
 
 # ACTUATOR PROPERTIES
 management:
@@ -30,4 +31,5 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8010/eureka
   instance:
-#    statusPageUrlPath: /account/status/check  # By Default it will call /actuator/info
+    statusPageUrlPath: ${server.servlet.context-path}/actuator/info  # By Default it will call /actuator/info
+    healthCheckUrlPath: ${server.servlet.context-path}/actuator/health

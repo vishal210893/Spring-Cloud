@@ -7,6 +7,6 @@ server:
 spring:
   application:
     name: PhotoApp api user
-  devtools:
-    restart:
+  h2:
+    console:
       enabled: true

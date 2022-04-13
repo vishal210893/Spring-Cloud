@@ -1,10 +1,10 @@
 package com.solum.spring.cloud.photoappapiusers.conrollers;
 
-import com.appsdeveloperblog.photoapp.api.users.service.*;
-import com.appsdeveloperblog.photoapp.api.users.shared.*;
-import com.appsdeveloperblog.photoapp.api.users.ui.model.CreateUserRequestModel;
+import com.solum.spring.cloud.photoappapiusers.model.CreateUserRequestModel;
 import com.solum.spring.cloud.photoappapiusers.model.CreateUserResponseModel;
 import com.solum.spring.cloud.photoappapiusers.model.UserResponseModel;
+import com.solum.spring.cloud.photoappapiusers.service.UsersService;
+import com.solum.spring.cloud.photoappapiusers.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
