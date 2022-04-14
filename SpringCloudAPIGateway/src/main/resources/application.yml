@@ -16,12 +16,19 @@ spring:
         id: photoapp-api-account-management
         uri: lb://photoapp-account-management # for using service name combination
        #uri: http://localhost:56803 # for using {ip:port} combination
-        predicates[0]: Path=/pacm/account/status/check
+        predicates[0]: Path=/account/status
         predicates[1]: Method=GET,POST
         #predicates[2]: Header=Authorization, Bearer (.*)
         filters[0]: RemoveRequestHeader=Cookie
-        #filters[1]: RewritePath=/users-ws/(?<segment>.*), /${segment}
+        filters[1]: RewritePath=/(?<segment>.*), /pacm/${segment}
         #filters[2]: AuthorizationHeaderFilter
+      routes[1]:
+        id: header_route
+        uri: https://example.org # for using service name combination
+        predicates[0]: Header=X-Request-Id, \d+
+        # The Header route predicate factory takes two parameters, the header name and a regexp (which is a Java regular expression).
+        # This predicate matches with a header that has the given name whose value matches the regular expression. The following example configures a header route predicate:
+        # This route matches if the request has a header named X-Request-Id whose value matches the \d+ regular expression (that is, it has a value of one or more digits).
 
 eureka:
   client:

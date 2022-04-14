@@ -33,3 +33,5 @@ eureka:
   instance:
     statusPageUrlPath: ${server.servlet.context-path}/actuator/info  # By Default it will call /actuator/info
     healthCheckUrlPath: ${server.servlet.context-path}/actuator/health
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
