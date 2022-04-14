@@ -2,17 +2,13 @@ package com.solum.spring.cloud.photoappapiusers.data;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 @Data
+@Entity
+@Table(name="users")
 public class UserEntity implements Serializable {
-
  
 	private static final long serialVersionUID = -2731425678149216053L;
 	

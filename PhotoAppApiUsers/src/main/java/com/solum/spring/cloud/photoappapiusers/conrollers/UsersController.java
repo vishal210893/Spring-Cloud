@@ -36,24 +36,17 @@ public class UsersController {
     public ResponseEntity<CreateUserResponseModel> createUser(@RequestBody CreateUserRequestModel userDetails) {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
         UserDto userDto = modelMapper.map(userDetails, UserDto.class);
-
         UserDto createdUser = usersService.createUser(userDto);
-
         CreateUserResponseModel returnValue = modelMapper.map(createdUser, CreateUserResponseModel.class);
-
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
 
     @GetMapping(value = "/{userId}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId") String userId) {
-
         UserDto userDto = usersService.getUserByUserId(userId);
         UserResponseModel returnValue = new ModelMapper().map(userDto, UserResponseModel.class);
-
         return ResponseEntity.status(HttpStatus.OK).body(returnValue);
     }
-
 
 }
