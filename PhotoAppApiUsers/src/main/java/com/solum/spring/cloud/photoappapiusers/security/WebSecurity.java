@@ -34,14 +34,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .hasIpAddress(environment.getProperty("gateway.ip"))
                 .and()
                 .addFilter(getAuthenticationFilter());
-        /*http
-                .authorizeRequests()
-                .anyRequest()
-                .permitAll();*/
+
+        /*http.authorizeRequests().anyRequest().permitAll();*/
+
         http
                 .headers()
                 .frameOptions()
-                .disable();
+                .disable(); // h2-console uses frame option so for it to run in web-browser we need to disable it
     }
 
     private AuthenticationFilter getAuthenticationFilter() throws Exception {

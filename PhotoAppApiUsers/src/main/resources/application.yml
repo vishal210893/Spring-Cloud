@@ -1,12 +1,23 @@
 server:
-  port: ${PORT:0}
+  port: ${PORT:9056}
 
 spring:
   application:
     name: photoapp-api-user
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: 123
+    driverClassName: org.h2.Driver
+    jpa:
+      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console:
       enabled: true
+      settings:
+        web-allow-others: true
+        trace: false
+      path: /h2console
   rabbitmq:
     addresses: amqps://mnufxmxx:BRav08eNOG_NEZI8fSgySKK-0EiNTm8_@lionfish.rmq.cloudamqp.com/mnufxmxx
 
