@@ -55,4 +55,4 @@ token:
   secret: hfgry463hf746hf573ydh475fhy5739
   expiration_time: '864000000'
 gateway:
-  ip: 10.14.60.178
+  ip: 10.14.59.167

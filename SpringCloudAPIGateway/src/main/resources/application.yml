@@ -29,6 +29,26 @@ spring:
         # The Header route predicate factory takes two parameters, the header name and a regexp (which is a Java regular expression).
         # This predicate matches with a header that has the given name whose value matches the regular expression. The following example configures a header route predicate:
         # This route matches if the request has a header named X-Request-Id whose value matches the \d+ regular expression (that is, it has a value of one or more digits).
+      routes[2]:
+        id: photoapp-api-user
+        uri: lb://photoapp-api-user
+        predicates[0]: Path=/users
+        predicates[1]: Method=POST
+        filters[0]: RemoveRequestHeader=Cookie
+      routes[3]:
+        id: photoapp-api-user
+        uri: lb://photoapp-api-user
+        predicates[0]: Path=/users/login
+        predicates[1]: Method=GET,POST
+        filters[0]: RemoveRequestHeader=Cookie
+      routes[4]:
+        id: photoapp-api-user
+        uri: lb://photoapp-api-user
+        predicates[0]: Path=/users/**
+        predicates[1]: Method=GET,POST
+        predicates[2]: Header=Authorization, Bearer (.*)
+        filters[0]: RemoveRequestHeader=Cookie
+        filters[1]: AuthorizationHeaderFilter
 
 eureka:
   client:
