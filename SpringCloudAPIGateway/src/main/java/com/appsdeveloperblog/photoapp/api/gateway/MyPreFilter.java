@@ -18,19 +18,23 @@ public class MyPreFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String requestPath = exchange.getRequest().getPath().toString();
-        log.info("PREFILTER ----- Request path = {}", requestPath);
+        log.info("PREFILTER -----> Request path = {}", requestPath);
         HttpHeaders headers = exchange.getRequest().getHeaders();
+        headers.forEach((k, v) -> {
+            System.out.println(k + " : " + v);
+        });
+        /*
         Set<String> headerNames = headers.keySet();
         headerNames.forEach((headerName) -> {
             String headerValue = headers.getFirst(headerName);
-            log.info(headerName + " " + headerValue);
+            log.info(headerName + " : " + headerValue);
         });
+        */
         return chain.filter(exchange);
     }
 
     @Override
     public int getOrder() {
-
         return 0;
     }
 
