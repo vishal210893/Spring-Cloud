@@ -20,6 +20,8 @@ spring:
       path: /h2console
   rabbitmq:
     addresses: amqps://mnufxmxx:BRav08eNOG_NEZI8fSgySKK-0EiNTm8_@lionfish.rmq.cloudamqp.com/mnufxmxx
+  config:
+    import: optional:configserver:http://localhost:8082
 
 eureka:
   client:
@@ -48,11 +50,11 @@ management:
     java:
       enabled: true
 
-login:
-  url:
-    path: /users/login
-token:
-  secret: hfgry463hf746hf573ydh475fhy5739
-  expiration_time: '864000000'
-gateway:
-  ip: 10.14.59.167
+#login:
+#  url:
+#    path: /users/login
+#token:
+#  secret: hfgry463hf746hf573ydh475fhy5739
+#  expiration_time: '864000000'
+#gateway:
+#  ip: 10.14.59.167
