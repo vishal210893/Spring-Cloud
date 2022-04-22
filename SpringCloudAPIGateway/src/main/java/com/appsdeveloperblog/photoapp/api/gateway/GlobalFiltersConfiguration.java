@@ -15,9 +15,9 @@ public class GlobalFiltersConfiguration {
     @Bean
     public GlobalFilter secondPreFilter() {
         return (exchange, chain) -> {
-            log.info("My second global pre-filter is executed...");
+            log.info("2 PREFILTER");
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                log.info("Third post-filter executed...");
+                log.info("3 POSTFILTER");
             }));
         };
     }
@@ -26,24 +26,22 @@ public class GlobalFiltersConfiguration {
     @Bean
     public GlobalFilter thirdPreFilter() {
         return (exchange, chain) -> {
-            log.info("My third global pre-filter is executed...");
+            log.info("3 PREFILTER");
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                log.info("My second post-filter is executed...");
+                log.info("2 POSTFILTER");
             }));
         };
-
     }
 
     @Order(3)
     @Bean
     public GlobalFilter fourthPreFilter() {
         return (exchange, chain) -> {
-            log.info("My fourth global pre-filter is executed...");
+            log.info("4 PREFILTER");
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                log.info("My first post-filter is executed");
+                log.info("1 POSTFILTER");
             }));
         };
-
     }
 
 }
