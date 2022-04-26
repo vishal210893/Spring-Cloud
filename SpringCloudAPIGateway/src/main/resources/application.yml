@@ -43,7 +43,7 @@ spring:
         filters[0]: RemoveRequestHeader=Cookie
       routes[4]:
         id: photoapp-api-user
-        uri: http://10.14.59.167:9056
+        uri: http://10.14.60.207:9056
         predicates[0]: Path=/users/**
         predicates[1]: Method=GET,POST
         predicates[2]: Header=Authorization, Bearer (.*)
@@ -73,4 +73,4 @@ management:
       enabled: true
 
 token:
-  secret: hfgry463hf746hf573ydh475fhy5739
+  secret: hfgry463hf746hf573ydh475fhy57381

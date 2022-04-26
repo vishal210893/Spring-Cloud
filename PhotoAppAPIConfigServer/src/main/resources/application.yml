@@ -10,7 +10,7 @@ spring:
         git:
           clone-on-start: true
           force-pull: true
-          password: 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
+          password: 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
 #         searchPaths: usersws,zuul
           uri: https://github.com/vishal210893/ConfigRepo
           username: vishal210893
